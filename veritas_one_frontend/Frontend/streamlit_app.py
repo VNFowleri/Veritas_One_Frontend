@@ -23,7 +23,7 @@ selected_page = st.sidebar.selectbox("Navigation", pages)
 # ----- Welcome Page -----
 if selected_page == "Welcome":
     st.title("Welcome to Veritas One")
-    st.image("logo.png", width=200)  # Ensure logo.png is in the current working directory
+    st.image("logo.png", width=200)  # Ensure logo.png is in your working directory
     st.subheader("Your Personal Health Record & Data Empowerment")
     st.write(
         """
@@ -136,4 +136,152 @@ elif selected_page == "Create Account":
             (
                 "Strict Privacy Mode (No Sharing)",
                 "De-Identified Research Only (5% of research profits)",
-                "Full Data Sharing (Research +
+                "Full Data Sharing (Research + Ads) (15% of total profits)",
+            )
+        )
+        # Define the table data for sharing options
+        table_data = {
+            "Sharing Option": [
+                "Strict Privacy Mode (No Sharing)",
+                "De-Identified Research Only",
+                "Full Data Sharing (Research + Ads)"
+            ],
+            "How Your Data is Used": [
+                "Your data is stored for your personal use only.",
+                "Your anonymous health data is used to improve medicine and public health.",
+                "Your de-identified data is used for research, AND if you opt in, limited identifiable data (such as medications) can be used for personalized health offers."
+            ],
+            "Compensation": [
+                "No compensation.",
+                "You receive 5% of research profits.",
+                "You receive 15% of total profits."
+            ]
+        }
+        df = pd.DataFrame(table_data)
+        st.table(df)
+        submitted = st.form_submit_button("Create Account")
+        if submitted:
+            st.success("Account created successfully!")
+            st.write(f"Welcome, {first_name} {last_name}!")
+
+# ----- Login Page -----
+elif selected_page == "Login":
+    st.title("Login")
+    st.write("Enter your credentials to log in.")
+    with st.form("login_form"):
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
+        submitted = st.form_submit_button("Login")
+        if submitted:
+            st.success("Logged in successfully!")
+
+# ----- Dashboard (User Profile) -----
+elif selected_page == "Dashboard (User Profile)":
+    st.title("User Dashboard - Joe Smith")
+    st.write(
+        """
+        **Joe Smith**  
+        67-year-old male, former smoker (quit 2018), with a history of coronary artery disease (4 vessel CABG in 2018), COPD, and Type 2 Diabetes.  
+        Family history: Lung cancer in his father.
+        """
+    )
+    st.subheader("Recent Healthcare Visits")
+    visits_data = {
+        "Date": ["2023-01-15", "2023-03-22", "2023-06-10"],
+        "Doctor": ["Dr. Adams", "Dr. Baker", "Dr. Clark"],
+        "Facility": ["General Hospital", "Specialty Clinic", "City Medical Center"],
+        "Diagnosis/Procedure": ["Checkup", "Cardiac Stress Test", "Follow-up"],
+    }
+    visits_df = pd.DataFrame(visits_data)
+    st.table(visits_df)
+    st.write("Click on a visit for full details.")
+
+# ----- Encounter Record Page -----
+elif selected_page == "Encounter Record":
+    st.title("Encounter Record Detail")
+    st.subheader("Discharge Summary")
+    st.write("Detailed summary of the patient’s hospital encounter.")
+    st.subheader("Procedure/Operative Notes")
+    st.write("Notes on procedures performed during the encounter.")
+    st.subheader("Consult Notes & H&P")
+    st.write("Consultation notes and History & Physical details.")
+    st.subheader("Daily Progress Notes")
+    st.write("Daily progress notes from the hospital stay.")
+    st.subheader("Labs")
+    st.write("Lab results:")
+    with st.expander("View Labs"):
+        lab_data = {
+            "Test": ["CBC", "Metabolic Panel", "Lipid Panel"],
+            "Result": ["Normal", "Abnormal", "Borderline"],
+            "Date": ["2023-01-10", "2023-01-10", "2023-01-10"],
+        }
+        lab_df = pd.DataFrame(lab_data)
+        st.table(lab_df)
+
+# ----- Settings & Privacy Center -----
+elif selected_page == "Settings & Privacy":
+    st.title("Settings & Privacy Center")
+    st.write("Manage your data sharing preferences and view your compensation details.")
+    st.subheader("Adjust Sharing Preferences")
+    sharing_pref = st.radio(
+        "Select your preferred data sharing mode:",
+        (
+            "Strict Privacy Mode (No Sharing)",
+            "De-Identified Research Only (5% of research profits)",
+            "Full Data Sharing (Research + Ads) (15% of advertising profits)",
+        ),
+    )
+    st.subheader("Notification Preferences")
+    notifications_pref = st.multiselect(
+        "Select notification types:",
+        ["Clinical trial invites", "Compensation updates"],
+    )
+    st.subheader("Compensation Overview")
+    st.write("You have earned $50 from data sharing this month!")
+
+# ----- Notifications Panel -----
+elif selected_page == "Notifications":
+    st.title("Notifications")
+    st.write("Your latest notifications:")
+    st.write(
+        """
+        - **Clinical Trial Invite:** You have been invited to participate in a trial.
+        - **Compensation Update:** Your earnings have been updated.
+        - **Record Access Request:** A provider has requested access to your records.
+        """
+    )
+
+# ----- Search Functionality -----
+elif selected_page == "Search":
+    st.title("Search Health Records")
+    search_query = st.text_input("Search for visits, labs, procedures, or medications:")
+    if st.button("Search"):
+        st.write(f"Showing results for: {search_query}")
+        st.write("Search results would appear here.")
+
+# ----- FAQs & Support -----
+elif selected_page == "FAQs & Support":
+    st.title("FAQs & Support")
+    st.write(
+        """
+        **FAQs**
+        - **How is my data protected?**
+          Your data is secured using industry-standard encryption and stored in a HIPAA-compliant environment.
+        - **Can I change my data sharing preferences?**
+          Yes, you can adjust your preferences in the Settings & Privacy Center.
+        - **How do I contact support?**
+          Email us at support@veritasone.com.
+        """
+    )
+
+# ----- Security & Privacy Disclosures -----
+elif selected_page == "Security & Privacy Disclosures":
+    st.title("Security & Privacy Disclosures")
+    st.write(
+        """
+        **Our Commitment to Security**
+        - HIPAA-compliant data storage and handling.
+        - End-to-end encryption for data transmission.
+        - Regular security audits and updates.
+        """
+    )
