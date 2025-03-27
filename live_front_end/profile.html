@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Profile - VeritasOne</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">VeritasOne</div>
+    <nav>
+      <ul>
+        <li><a href="logout.html">Log Out</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="profile-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="profile-info">
+        <!-- Replace with dynamic user photo -->
+        <img src="https://via.placeholder.com/80" alt="User Photo">
+        <h2>First Name Last Name</h2>
+        <p>MRN: 12345</p>
+        <p>DOB: 01/01/1990</p>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Update Records</a></li>
+          <li><a href="#">Labs</a></li>
+          <li><a href="#">Encounters</a></li>
+          <li><a href="#">Share Records</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="login.html">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <h1>Your Records</h1>
+
+      <table class="records-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Provider</th>
+            <th>Document Text</th>
+            <th>Link to PDF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Example row -->
+          <tr>
+            <td>01/10/2023</td>
+            <td>Dr. Smith</td>
+            <td>Annual Check‐Up Summary</td>
+            <td><a href="#">View PDF</a></td>
+          </tr>
+          <!-- Additional rows can be generated dynamically -->
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-brand">VeritasOne</div>
+    <ul class="footer-links">
+      <li><a href="#">Who We Are</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="signup.html">Sign Up</a></li>
+      <li><a href="login.html">Log In</a></li>
+    </ul>
+    <ul class="social-icons">
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">YouTube</a></li>
+      <li><a href="#">Instagram</a></li>
+    </ul>
+  </footer>
+</body>
+</html>
